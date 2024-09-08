@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Marca {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  celulares Celular[]
+  notebooks Notebook[]
+}
+
+model Modelo {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  celulares Celular[]
+  notebooks Notebook[]
+}
+
+model Celular {
+  id            Int          @id @default(autoincrement())
+  nome          String
+  modelo        Modelo?      @relation(fields: [modeloId], references: [id])
+  modeloId      Int?
+  imei01        String       @unique
+  imei02        String       @unique
+  serial        String       @unique
+  armazenamento String
+  descricao     String
+  dataCompra    DateTime
+  marca         Marca?       @relation(fields: [marcaId], references: [id])
+  marcaId       Int?
+  dataRegistro  DateTime     @default(now())
+  emUso         UsoCelular[] // Histórico de uso de celulares
+  status        String       @default("DISPONÍVEL") // Status do dispositivo como String
+}
+
+model Notebook {
+  id            Int           @id @default(autoincrement())
+  nome          String
+  modelo        Modelo?       @relation(fields: [modeloId], references: [id])
+  modeloId      Int?
+  serial        String        @unique
+  so            String
+  memoria       String
+  armazenamento String
+  processador   String
+  descricao     String
+  dataCompra    DateTime
+  marca         Marca?        @relation(fields: [marcaId], references: [id])
+  marcaId       Int?
+  dataRegistro  DateTime      @default(now())
+  emUso         UsoNotebook[] // Histórico de uso de notebooks
+  status        String        @default("DISPONÍVEL") // Status do dispositivo como String
+}
+
+model Colaborador {
+  id          Int           @id @default(autoincrement())
+  nome        String
+  local       String
+  usoCelular  UsoCelular[] // Histórico de celulares em uso pelo colaborador
+  usoNotebook UsoNotebook[] // Histórico de notebooks em uso pelo colaborador
+}
+
+model UsoCelular {
+  id            Int         @id @default(autoincrement())
+  dataEntrega   DateTime
+  dataDevolucao DateTime?
+  colaborador   Colaborador @relation(fields: [colaboradorId], references: [id])
+  colaboradorId Int
+  celular       Celular     @relation(fields: [celularId], references: [id])
+  celularId     Int
+}
+
+model UsoNotebook {
+  id            Int         @id @default(autoincrement())
+  dataEntrega   DateTime
+  dataDevolucao DateTime?
+  colaborador   Colaborador @relation(fields: [colaboradorId], references: [id])
+  colaboradorId Int
+  notebook      Notebook    @relation(fields: [notebookId], references: [id])
+  notebookId    Int
+}
+
+// enum StatusDispositivo {
+//   DISPONÍVEL
+//   MANUTENCAO
+//   DESCARTADO
+//   ROUBADO
+//   PERDIDO
+// }
