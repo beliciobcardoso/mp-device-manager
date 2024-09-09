@@ -1,12 +1,11 @@
 import { promises as fs } from "fs"
 import { Metadata } from "next"
-import Image from "next/image"
 import path from "path"
 import { z } from "zod"
 
+import AddModelo from "./components/add-modelo"
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
-import { UserNav } from "./components/user-nav"
 import { taskSchema } from "./data/schema"
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
 // Simulate a database read for tasks.
 async function getTasks() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "app/(app)/examples/tasks/data/tasks.json")
+    path.join(process.cwd(), "app\\modelo\\data\\tasks.json")
   )
 
   const tasks = JSON.parse(data.toString())
@@ -30,23 +29,7 @@ export default async function ModeloPage() {
 
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/tasks-light.png"
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/tasks-dark.png"
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="hidden dark:block"
-        />
-      </div>
-      <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+      <div className=" h-full flex-1 flex-col space-y-8 p-8">
         <div className="flex items-center justify-between space-y-2">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
@@ -55,7 +38,7 @@ export default async function ModeloPage() {
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <UserNav />
+            <AddModelo />
           </div>
         </div>
         <DataTable data={tasks} columns={columns} />
