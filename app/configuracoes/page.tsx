@@ -15,6 +15,7 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
+import ModeloPage from "../modelo/page"
 
 export default function Configuracoes() {
     return (
@@ -74,27 +75,7 @@ export default function Configuracoes() {
                     </Card>
                 </TabsContent>
                 <TabsContent value="modelo" className="w-[400px]">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Modelo</CardTitle>
-                            <CardDescription>
-                                Change your marca here. After saving, you'll be logged out.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-2">
-                            <div className="space-y-1">
-                                <Label htmlFor="current">Current marca</Label>
-                                <Input id="current" type="marca" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="new">New marca</Label>
-                                <Input id="new" type="marca" />
-                            </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Save Modelo</Button>
-                        </CardFooter>
-                    </Card>
+                    <ModeloPage />
                 </TabsContent>
                 <TabsContent value="notebook" className="w-[400px]">
                     <Card>
