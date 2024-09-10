@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -15,8 +16,12 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
+import { useFormState } from "react-dom"
+import { saveMarca } from "./marca/action"
+
 
 export default function Configuracoes() {
+    const [state, formMarcaAction] = useFormState(saveMarca, null)
     return (
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
             <Tabs defaultValue="colaboradores">
@@ -55,22 +60,21 @@ export default function Configuracoes() {
                         <CardHeader>
                             <CardTitle>Marca</CardTitle>
                             <CardDescription>
-                                Change your marca here. After saving, you'll be logged out.
+                                Cadastro das marcas.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
-                            <div className="space-y-1">
-                                <Label htmlFor="current">Current marca</Label>
-                                <Input id="current" type="marca" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="new">New marca</Label>
-                                <Input id="new" type="marca" />
-                            </div>
+                            <form action={formMarcaAction}>
+                                <div className="space-y-1">
+                                    <Label htmlFor="nome">Nome</Label>
+                                    <Input id="nome" type="text" name="nome" />
+                                    <div id="name-error" aria-live="polite" aria-atomic="true">
+                                        <p className="mt-2 text-sm text-red-500">{state?.Error?.nome}</p>
+                                    </div>
+                                </div>
+                                <Button>Salvar</Button>
+                            </form>
                         </CardContent>
-                        <CardFooter>
-                            <Button>Save marca</Button>
-                        </CardFooter>
                     </Card>
                 </TabsContent>
                 <TabsContent value="modelo" className="w-[400px]">
@@ -143,6 +147,6 @@ export default function Configuracoes() {
                     </Card>
                 </TabsContent>
             </Tabs>
-        </main>
+        </main >
     )
 }
