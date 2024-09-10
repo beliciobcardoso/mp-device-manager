@@ -87,7 +87,7 @@ export const columns: ColumnDef<Modelo>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
+      const modelo = row.original
 
       return (
         <DropdownMenu>
@@ -100,13 +100,13 @@ export const columns: ColumnDef<Modelo>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => console.log('Copy payment ID', payment.id)}
+              onClick={() => console.log('Copy Modelo ID', modelo.id)}
             >
-              Copy payment ID
+              Copy Modelo ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View modelo details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
