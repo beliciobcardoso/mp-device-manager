@@ -4,7 +4,7 @@ import { DialogModelo } from './components/dialog-modelo'
 export default function ModeloPage() {
   return (
     <>
-      <div className=" h-full space-y-8 p-8">
+      <div className="h-full space-y-8 p-8">
         <div className="flex items-center justify-between space-y-2">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Modelos</h2>
@@ -13,7 +13,9 @@ export default function ModeloPage() {
             <DialogModelo />
           </div>
         </div>
-        <DataTable />
+        <div className="flex justify-center items-center px-64">
+          <DataTable />
+        </div>
       </div>
     </>
   )

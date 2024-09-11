@@ -52,7 +52,7 @@ export default function Configuracoes() {
             <CardContent className="space-y-2"></CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="modelo" className="w-[500px]">
+        <TabsContent value="modelo" className="">
           <ModeloPage />
         </TabsContent>
         <TabsContent value="notebook" className="w-[400px]">

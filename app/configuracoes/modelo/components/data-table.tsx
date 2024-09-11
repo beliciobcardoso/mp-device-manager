@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { CaretSortIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import {
   ColumnDef,
@@ -15,7 +16,6 @@ import {
 } from '@tanstack/react-table'
 import * as React from 'react'
 
-import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -79,9 +79,7 @@ export const columns: ColumnDef<Modelo>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => (
-      <div className="bg-slate-500 flex flex-1">{row.getValue('nome')}</div>
-    ),
+    cell: ({ row }) => <div className="pl-4">{row.getValue('nome')}</div>,
   },
   {
     id: 'actions',
