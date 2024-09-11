@@ -14,7 +14,7 @@ import ModeloPage from './modelo/page'
 
 export default function Configuracoes() {
   return (
-    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+    <main className="flex flex-1 flex-col gap-4 p-2 lg:gap-6 lg:p-6 bg-slate-200">
       <Tabs defaultValue="colaboradores">
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="colaboradores">Colaboradores</TabsTrigger>

@@ -141,8 +141,8 @@ export function DataTable() {
   })
 
   return (
-    <div className="w-full">
-      <div className="rounded-md border">
+    <div className="w-full ">
+      <div className="rounded-md border bg-stone-200">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
