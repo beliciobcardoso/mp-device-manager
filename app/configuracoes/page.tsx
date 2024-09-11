@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -10,6 +9,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import MarcaPage from './marca/page'
 import ModeloPage from './modelo/page'
 
 export default function Configuracoes() {
@@ -43,16 +43,10 @@ export default function Configuracoes() {
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent value="marca" className="w-[400px]">
-          <Card>
-            <CardHeader>
-              <CardTitle>Marca</CardTitle>
-              <CardDescription>Cadastro das marcas.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2"></CardContent>
-          </Card>
+        <TabsContent value="marca">
+          <MarcaPage />
         </TabsContent>
-        <TabsContent value="modelo" className="">
+        <TabsContent value="modelo">
           <ModeloPage />
         </TabsContent>
         <TabsContent value="notebook" className="w-[400px]">
