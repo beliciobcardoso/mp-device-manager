@@ -52,7 +52,6 @@ model Notebook {
   memoria       String
   armazenamento String
   processador   String
-  descricao     String
   dataCompra    DateTime
   marca         Marca?        @relation(fields: [marcaId], references: [id])
   marcaId       Int?
