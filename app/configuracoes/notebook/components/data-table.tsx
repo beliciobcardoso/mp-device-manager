@@ -43,7 +43,6 @@ export type Notebooks = {
   memoria: string
   armazenamento: string
   processador: string
-  descricao: string
   dataCompra: string
   status: string
 }
@@ -59,7 +58,6 @@ const data: Notebooks[] = [
     memoria: '8GB',
     armazenamento: '256GB',
     processador: 'Intel Core i5',
-    descricao: 'Notebook 1',
     dataCompra: '2021-10-01',
     status: 'DISPONÍVEL',
   },
@@ -73,7 +71,6 @@ const data: Notebooks[] = [
     memoria: '8GB',
     armazenamento: '256GB',
     processador: 'Intel Core i5',
-    descricao: 'Notebook 2',
     dataCompra: '2021-10-01',
     status: 'DISPONÍVEL',
   },
@@ -87,7 +84,6 @@ const data: Notebooks[] = [
     memoria: '8GB',
     armazenamento: '256GB',
     processador: 'Intel Core i5',
-    descricao: 'Notebook 3',
     dataCompra: '2021-10-01',
     status: 'DISPONÍVEL',
   },
@@ -101,7 +97,6 @@ const data: Notebooks[] = [
     memoria: '8GB',
     armazenamento: '256GB',
     processador: 'Intel Core i5',
-    descricao: 'Notebook 4',
     dataCompra: '2021-10-01',
     status: 'DISPONÍVEL',
   },
@@ -115,7 +110,6 @@ const data: Notebooks[] = [
     memoria: '8GB',
     armazenamento: '256GB',
     processador: 'Intel Core i5',
-    descricao: 'Notebook 5',
     dataCompra: '2021-10-01',
     status: 'DISPONÍVEL',
   },
