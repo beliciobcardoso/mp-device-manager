@@ -24,6 +24,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { PlusIcon } from '@radix-ui/react-icons'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { create } from '../action'
 
 const formSchema = z.object({
   nome: z
@@ -36,9 +37,11 @@ const formSchema = z.object({
     }),
 })
 
+type FormValues = z.infer<typeof formSchema>
+
 export function DialogModelo() {
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       nome: '',
@@ -49,6 +52,7 @@ export function DialogModelo() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    create(values.nome)
     console.log(values)
   }
 

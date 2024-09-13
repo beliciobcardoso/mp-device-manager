@@ -42,13 +42,6 @@ const data: Marca[] = [
   { id: 1, nome: 'Samsung' },
   { id: 2, nome: 'Apple' },
   { id: 3, nome: 'Motorola' },
-  { id: 4, nome: 'Xiaomi' },
-  { id: 5, nome: 'Asus' },
-  { id: 6, nome: 'LG' },
-  { id: 7, nome: 'Sony' },
-  { id: 8, nome: 'Lenovo' },
-  { id: 9, nome: 'Nokia' },
-  { id: 10, nome: 'Alcatel' },
 ]
 
 export const columns: ColumnDef<Marca>[] = [

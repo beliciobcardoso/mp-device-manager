@@ -7,36 +7,30 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
+  // url      = env("DATABASE_URL")
 }
 
 model Marca {
-  id        Int        @id @default(autoincrement())
-  nome      String
-  celulares Celular[]
-  notebooks Notebook[]
+  id   Int    @id @default(autoincrement())
+  nome String
 }
 
 model Modelo {
-  id        Int        @id @default(autoincrement())
-  nome      String
-  celulares Celular[]
-  notebooks Notebook[]
+  id   Int    @id @default(autoincrement())
+  nome String
 }
 
 model Celular {
   id            Int          @id @default(autoincrement())
   nome          String
-  modelo        Modelo?      @relation(fields: [modeloId], references: [id])
-  modeloId      Int?
+  modelo        String
+  marca         String
   imei01        String       @unique
   imei02        String       @unique
   serial        String       @unique
   armazenamento String
-  descricao     String
   dataCompra    DateTime
-  marca         Marca?       @relation(fields: [marcaId], references: [id])
-  marcaId       Int?
   dataRegistro  DateTime     @default(now())
   emUso         UsoCelular[] // Histórico de uso de celulares
   status        String       @default("DISPONÍVEL") // Status do dispositivo como String
@@ -45,16 +39,14 @@ model Celular {
 model Notebook {
   id            Int           @id @default(autoincrement())
   nome          String
-  modelo        Modelo?       @relation(fields: [modeloId], references: [id])
-  modeloId      Int?
   serial        String        @unique
+  marca         String
+  modelo        String
   so            String
   memoria       String
   armazenamento String
   processador   String
   dataCompra    DateTime
-  marca         Marca?        @relation(fields: [marcaId], references: [id])
-  marcaId       Int?
   dataRegistro  DateTime      @default(now())
   emUso         UsoNotebook[] // Histórico de uso de notebooks
   status        String        @default("DISPONÍVEL") // Status do dispositivo como String
