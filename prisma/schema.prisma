@@ -56,6 +56,7 @@ model Colaborador {
   id          Int           @id @default(autoincrement())
   nome        String        @unique
   local       String
+  setor       String
   usoCelular  UsoCelular[] // Histórico de celulares em uso pelo colaborador
   usoNotebook UsoNotebook[] // Histórico de notebooks em uso pelo colaborador
 }
