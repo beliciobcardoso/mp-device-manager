@@ -1,22 +1,21 @@
 import { Button } from '@/components/ui/button'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import {
-    CircleUser,
-    Home,
-    LineChart,
-    Menu,
-    Package,
-    Package2,
-    ShoppingCart,
-    Users,
+  CircleUser,
+  Home,
+  LineChart,
+  Menu,
+  Package,
+  Package2,
+  ShoppingCart
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -59,13 +58,6 @@ export default function MenuSheet() {
             >
               <Package className="h-4 w-4" />
               Celular
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-            >
-              <Users className="h-4 w-4" />
-              Customers
             </Link>
             <Link
               href="#"
