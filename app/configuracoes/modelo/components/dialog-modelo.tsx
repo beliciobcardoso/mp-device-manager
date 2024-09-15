@@ -1,5 +1,4 @@
 'use client'
-
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -49,11 +48,14 @@ export function DialogModelo() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    create(values.nome)
-    console.log(values)
+  function onSubmit(values: FormValues) {
+    try {
+      create(values.nome)
+      // 3. Reset the form.
+      form.reset()
+    } catch (error) {
+      console.error('Erro' + error)
+    }
   }
 
   return (
