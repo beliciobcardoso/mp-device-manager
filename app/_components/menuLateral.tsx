@@ -1,5 +1,5 @@
 'use client'
-import { Home, LineChart, Package, ShoppingCart, Users } from 'lucide-react'
+import { Home, LineChart, Package, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -33,13 +33,6 @@ export default function MenuLateral() {
         >
           <Package className="h-4 w-4" />
           Celular
-        </Link>
-        <Link
-          href="#"
-          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${isActive('/')}`}
-        >
-          <Users className="h-4 w-4" />
-          Customers
         </Link>
         <Link
           href="configuracoes"
