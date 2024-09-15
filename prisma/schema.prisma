@@ -13,17 +13,17 @@ datasource db {
 
 model Marca {
   id   Int    @id @default(autoincrement())
-  nome String
+  nome String @unique
 }
 
 model Modelo {
   id   Int    @id @default(autoincrement())
-  nome String
+  nome String @unique
 }
 
 model Celular {
   id            Int          @id @default(autoincrement())
-  nome          String
+  nome          String       @unique
   modelo        String
   marca         String
   imei01        String       @unique
@@ -33,12 +33,12 @@ model Celular {
   dataCompra    DateTime
   dataRegistro  DateTime     @default(now())
   emUso         UsoCelular[] // Histórico de uso de celulares
-  status        String       @default("DISPONÍVEL") // Status do dispositivo como String
+  status        String
 }
 
 model Notebook {
   id            Int           @id @default(autoincrement())
-  nome          String
+  nome          String        @unique
   serial        String        @unique
   marca         String
   modelo        String
@@ -49,12 +49,12 @@ model Notebook {
   dataCompra    DateTime
   dataRegistro  DateTime      @default(now())
   emUso         UsoNotebook[] // Histórico de uso de notebooks
-  status        String        @default("DISPONÍVEL") // Status do dispositivo como String
+  status        String
 }
 
 model Colaborador {
   id          Int           @id @default(autoincrement())
-  nome        String
+  nome        String        @unique
   local       String
   usoCelular  UsoCelular[] // Histórico de celulares em uso pelo colaborador
   usoNotebook UsoNotebook[] // Histórico de notebooks em uso pelo colaborador
