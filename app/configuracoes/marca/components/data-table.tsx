@@ -32,17 +32,18 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { list } from '../action'
 
 export type Marca = {
   id: number
   nome: string
 }
 
-const data: Marca[] = [
-  { id: 1, nome: 'Samsung' },
-  { id: 2, nome: 'Apple' },
-  { id: 3, nome: 'Motorola' },
-]
+// const data: Marca[] = [
+//   { id: 1, nome: 'Samsung' },
+//   { id: 2, nome: 'Apple' },
+//   { id: 3, nome: 'Motorola' },
+// ]
 
 export const columns: ColumnDef<Marca>[] = [
   {
@@ -92,6 +93,16 @@ export const columns: ColumnDef<Marca>[] = [
 ]
 
 export function DataTable() {
+  const [data, setData] = React.useState<Marca[]>([])
+
+  React.useEffect(() => {
+    async function fetchData() {
+      const result = await list()
+      setData(result)
+    }
+    fetchData()
+  }, [])
+
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
