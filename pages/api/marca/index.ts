@@ -27,6 +27,25 @@ export default async function handler(
       },
     })
     res.status(200).json(marca)
+  } else if (req.method === 'PUT') {
+    const { id, nome } = req.body
+    const marca: Marca = await prisma.marca.update({
+      where: {
+        id,
+      },
+      data: {
+        nome,
+      },
+    })
+    res.status(200).json(marca)
+  } else if (req.method === 'DELETE') {
+    const { id } = req.body
+    const marca: Marca = await prisma.marca.delete({
+      where: {
+        id,
+      },
+    })
+    res.status(200).json(marca)
   } else {
     res.status(405).json({ message: 'Method not allowed' })
   }
