@@ -1,9 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { CaretSortIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -17,14 +15,6 @@ import {
 import * as React from 'react'
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
   Table,
   TableBody,
   TableCell,
@@ -32,87 +22,26 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { useEffect, useState } from 'react'
+import { list } from '../action'
+import { columns } from './columns-table'
 
 export type Modelo = {
   id: number
   nome: string
 }
 
-const data: Modelo[] = [
-  {
-    id: 1,
-    nome: 'A15',
-  },
-  {
-    id: 2,
-    nome: 'A30',
-  },
-  {
-    id: 3,
-    nome: 'A60',
-  },
-  {
-    id: 4,
-    nome: 'E15',
-  },
-  {
-    id: 5,
-    nome: 'E30',
-  },
-  {
-    id: 6,
-    nome: 'E60',
-  },
-]
-
-export const columns: ColumnDef<Modelo>[] = [
-  {
-    accessorKey: 'nome',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Modelo
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => <div className="pl-4">{row.getValue('nome')}</div>,
-  },
-  {
-    id: 'actions',
-    enableHiding: false,
-    cell: ({ row }) => {
-      const modelo = row.original
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => console.log('Copy Modelo ID', modelo.id)}
-            >
-              Copy Modelo ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View modelo details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
-    },
-  },
-]
-
 export function DataTable() {
+  const [data, setData] = useState<Modelo[]>([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await list()
+      setData(result)
+    }
+    fetchData()
+  }, [])
+
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],

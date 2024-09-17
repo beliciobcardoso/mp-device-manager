@@ -1,50 +1,45 @@
+'use server'
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
+import { deleteSchema, formSchema } from './schema'
 
-const MarcaSchema = z.object({
-  nome: z.string().min(3, { message: 'Nome deve ter no mínimo 3 caracteres' })
-})
-
-export const saveMarca = async (data: any, formData: FormData) => {
-  console.log(data)
-  const validatedFields = MarcaSchema.safeParse(
-    Object.fromEntries(formData.entries())
-  )
-
-  if (!validatedFields.success) {
-    return {
-      Error: validatedFields.error.flatten().fieldErrors
-    }
-  }
-
-  validatedFields.data.nome = validatedFields.data.nome.trim()
-
-  console.log(validatedFields.data.nome)
-
-  try {
-    await prisma.marca.create({
-      data: validatedFields.data
+export async function create(input: z.infer<typeof formSchema>) {
+  if (input.id) {
+    const update = await prisma.colaborador.update({
+      where: { id: input.id },
+      data: {
+        nome: input.nome,
+        setor: input.setor,
+        local: input.local,
+      },
     })
-  } catch (error) {
-    return {
-      message: 'Erro ao salvar a marca'
-    }
+    return { error: null, data: update }
   }
+
+  if (!input.nome) {
+    return { error: 'Nome é obrigatório', data: null }
+  }
+
+  const colaborador = await prisma.colaborador.create({
+    data: {
+      nome: input.nome,
+      setor: input.setor,
+      local: input.local,
+    },
+  })
+  return colaborador
 }
 
-export const getMarca = async (query: string) => {
-  try {
-    const marca = await prisma.marca.findMany({
-      select: {
-        id: false,
-        nome: true
-      },
-      orderBy: {
-        nome: 'asc'
-      }
-    })
-    return marca
-  } catch (error) {
-    throw new Error('Erro ao buscar a marca')
-  }
+export async function remove(input: z.infer<typeof deleteSchema>) {
+  await prisma.colaborador.delete({
+    where: { id: input.id },
+  })
+  return { error: null, data: 'Colaborador Deletado' }
+}
+
+export async function list() {
+  const lista = await prisma.colaborador.findMany({
+    orderBy: { nome: 'asc' },
+  })
+  return lista
 }
