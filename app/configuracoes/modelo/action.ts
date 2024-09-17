@@ -1,5 +1,5 @@
 'use server'
-import prisma from '@/lib/db'
+import prisma from '@/lib/prisma'
 
 export async function create(nome: string) {
   return await prisma.modelo.create({
